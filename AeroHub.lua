@@ -2,7 +2,7 @@
 --  CONSOLE TROLL  --  versao FREE
 --
 --  `print` e `warn` do arquivo inteiro passam a cuspir frase aleatoria
---  em vez do texto real. Quem abrir o F9 nao ve nome de funcao, ordemss
+--  em vez do texto real. Quem abrir o F9 nao ve nome de funcao, ordemssa
 --  de boot nem nada que sirva pra copiar o hub -- ve bobagem.
 --
 --  Sao dois locais no escopo de topo (2 dos 200 registradores do Luau),
@@ -1476,7 +1476,7 @@ local function recalculateScale()
     local h = size.Y
 
     -- Sadece Mobil: Ekran yüksekliğine göre agresif küçültme
-    local newScale = math.clamp(h / 1200, 0.25, 0.40)
+    local newScale = math.clamp(h / 800, 0.60, 0.85)
 
     updateAllGuisScale(newScale)
 end
@@ -4761,7 +4761,7 @@ local function ShowPriorityAlertImpl(brainrotName, genText, mutation, ownerUsern
     alertGui.Parent = ExploitGui
     
     local alertFrame = Instance.new("Frame")
-    alertFrame.Size = UDim2.new(0, 360, 0, 70)
+    alertFrame.Size = UDim2.new(0.8, 0, 0.12, 0)
     alertFrame.Position = UDim2.new(0.5, 0, 0, -100) -- Start off-screen top
     alertFrame.AnchorPoint = Vector2.new(0.5, 0)
     alertFrame.BackgroundColor3 = Theme.MainBackground
@@ -4795,7 +4795,7 @@ local function ShowPriorityAlertImpl(brainrotName, genText, mutation, ownerUsern
     
     -- 3D Model ViewportFrame on the left
     local viewportFrame = Instance.new("ViewportFrame", alertFrame)
-    viewportFrame.Size = UDim2.new(0, 56, 0, 56)
+    viewportFrame.Size = UDim2.new(0.15, 0, 0.15, 0)
     viewportFrame.Position = UDim2.new(0, 12, 0.5, -2)
     viewportFrame.AnchorPoint = Vector2.new(0, 0.5)
     viewportFrame.BackgroundTransparency = 1
@@ -8097,7 +8097,7 @@ do
         lbl.Size = UDim2.fromScale(1, 1)
         lbl.BackgroundTransparency = 1
         lbl.Font = Enum.Font.GothamBlack
-        lbl.TextSize = 18
+        lbl.TextSize = 15
         lbl.TextColor3 = Color3.fromRGB(255, 60, 60)
         lbl.TextStrokeTransparency = 0
         lbl.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
@@ -9361,7 +9361,7 @@ local function buildRemoteSell()
     end
 
     remoteSellGui=Instance.new("ScreenGui"); remoteSellGui.Name="SXE_RemoteSell"; remoteSellGui.ResetOnSpawn=false; remoteSellGui.Parent=((gethui and gethui()) or game:GetService("CoreGui"))
-    local rsFrame=Instance.new("Frame", registerScreenGui(remoteSellGui)); rsFrame.Size=UDim2.new(0,190,0,240)
+    local rsFrame=Instance.new("Frame", registerScreenGui(remoteSellGui)); rsFrame.Size = UDim2.new(0.45, 0, 0.5, 0)
     rsFrame.Position=UDim2.new(0,350,1,-350); rsFrame.BackgroundColor3=Theme.MainBackground; rsFrame.BackgroundTransparency=0.06; rsFrame.BorderSizePixel=0
     Instance.new("UICorner",rsFrame).CornerRadius=UDim.new(0,12)
     local rsStroke=Instance.new("UIStroke",rsFrame); rsStroke.Color=Theme.AccentLight; rsStroke.Thickness=1.25; rsStroke.Transparency=0.08
@@ -9900,7 +9900,7 @@ function makeQuickPanel(t,size,pos) local f=Instance.new("Frame"); f.Size=size; 
 function makeSyncStateRow(parent,text,toggleName,callback,bindName)
     regToggle(toggleName,getToggle(toggleName))
     local row=Instance.new("Frame"); row.Size=UDim2.new(1,-4,0,34); row.BackgroundTransparency=1; row.Parent=parent
-    local label=Instance.new("TextLabel"); label.Size=UDim2.new(1,(bindName and -140 or -84),1,0); label.Position=UDim2.new(0,4,0,0); label.BackgroundTransparency=1; label.Text=text; label.TextColor3=Theme.Text; label.Font=Enum.Font.GothamSemibold; label.TextSize=12; label.TextXAlignment=Enum.TextXAlignment.Left; label.TextTruncate=Enum.TextTruncate.AtEnd; label.Parent=row
+    local label=Instance.new("TextLabel"); label.Size=UDim2.new(1,(bindName and -140 or -84),1,0); label.Position=UDim2.new(0,4,0,0); label.BackgroundTransparency=1; label.Text=text; label.TextColor3=Theme.Text; label.Font=Enum.Font.GothamSemibold; label.TextSize=18; label.TextScaled=true; label.TextXAlignment=Enum.TextXAlignment.Left; label.TextTruncate=Enum.TextTruncate.AtEnd; label.Parent=row
     local btn=Instance.new("TextButton"); btn.Name="WhiteTextBtn"; btn.Size=UDim2.new(0,72,0,30); btn.Position=UDim2.new(1,-74,0.5,-15); btn.TextColor3=Color3.new(1,1,1); btn.Font=Enum.Font.GothamBlack; btn.TextSize=12; btn.AutoButtonColor=false; btn.Parent=row; corner(btn,6)
     local function refresh(val) btn.BackgroundColor3=val and Theme.Green or Theme.ToggleOff2; btn.Text=val and "ON" or "OFF" end
     refresh(getToggle(toggleName)); onToggleChanged(toggleName,function(val) refresh(val) end)
@@ -9956,12 +9956,12 @@ function makeSyncMainToggle(parent,text,toggleName,callback,bindName)
     return BoundToggles[text]
 end
 
-function makeQuickButton(parent,text,callback,bg) local b=Instance.new("TextButton"); b.Size=UDim2.new(1,-4,0,36); b.BackgroundColor3=bg or Theme.SoftButton; b.BackgroundTransparency=0.02; b.Text=text; b.TextColor3=Theme.Text; b.Font=Enum.Font.GothamBold; b.TextSize=13; b.AutoButtonColor=false; b.Parent=parent; corner(b,6)
+function makeQuickButton(parent,text,callback,bg) local b=Instance.new("TextButton"); b.Size=UDim2.new(1,-4,0,36); b.BackgroundColor3=bg or Theme.SoftButton; b.BackgroundTransparency=0.02; b.Text=text; b.TextColor3=Theme.Text; b.Font=Enum.Font.GothamBold; b.TextSize=18; b.TextScaled=true; b.AutoButtonColor=false; b.Parent=parent; corner(b,6)
     b.MouseEnter:Connect(function() tw(b,{BackgroundColor3=bg or Theme.SoftButtonHover},0.12) end); b.MouseLeave:Connect(function() tw(b,{BackgroundColor3=bg or Theme.SoftButton},0.12) end)
     b.MouseButton1Click:Connect(function() if callback then callback() end end); return b end
 
 function makeQuickSlider(parent,text,min,max,default,callback,suffix) local holder=Instance.new("Frame"); holder.Size=UDim2.new(1,-4,0,50); holder.BackgroundTransparency=1; holder.Parent=parent
-    local label=Instance.new("TextLabel"); label.Size=UDim2.new(1,0,0,16); label.Position=UDim2.new(0,4,0,0); label.BackgroundTransparency=1; label.Text=text..": "..tostring(default)..(suffix or ""); label.TextColor3=Theme.Text; label.Font=Enum.Font.GothamMedium; label.TextSize=10; label.TextXAlignment=Enum.TextXAlignment.Left; label.Parent=holder
+    local label=Instance.new("TextLabel"); label.Size=UDim2.new(1,0,0,16); label.Position=UDim2.new(0,4,0,0); label.BackgroundTransparency=1; label.Text=text..": "..tostring(default)..(suffix or ""); label.TextColor3=Theme.Text; label.Font=Enum.Font.GothamMedium; label.TextSize=16; label.TextScaled=true; label.TextXAlignment=Enum.TextXAlignment.Left; label.Parent=holder
     local bar=Instance.new("Frame"); bar.Size=UDim2.new(1,-10,0,6); bar.Position=UDim2.new(0,4,0,26); bar.BackgroundColor3=Theme.SliderBg; bar.BorderSizePixel=0; bar.Parent=holder; corner(bar,10)
     local fill=Instance.new("Frame"); fill.Size=UDim2.new(math.clamp((default-min)/(max-min),0,1),0,1,0); fill.BackgroundColor3=Theme.Accent; fill.BorderSizePixel=0; fill.Parent=bar; corner(fill,10)
     local knob=Instance.new("Frame"); knob.Size=UDim2.new(0,14,0,14); knob.AnchorPoint=Vector2.new(0.5,0.5); knob.Position=UDim2.new(math.clamp((default-min)/(max-min),0,1),0,0.5,0); knob.Name = "WhiteSliderKnob"; knob.BackgroundColor3=Color3.fromRGB(255, 255, 255); knob.BorderSizePixel=0; knob.Parent=bar; corner(knob,20)
@@ -9991,13 +9991,14 @@ function makeMainSliderWithInput(parent,text,min,max,default,callback,suffix)
     corner(row, 6)
 
     local label = Instance.new("TextLabel")
-    label.Size = UDim2.new(0.65,0,0,16)
+    label.Size = UDim2.new(0.65, 0, 0, 26)
     label.Position = UDim2.new(0,8,0,4)
     label.BackgroundTransparency = 1
     label.Text = text
     label.TextColor3 = Theme.Text
     label.Font = Enum.Font.GothamMedium
-    label.TextSize = 10
+    label.TextSize = 16
+    label.TextScaled = true
     label.TextXAlignment = Enum.TextXAlignment.Left
     label.Parent = row
 
